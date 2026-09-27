@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+  <title>Realizar Pedido - Postres Ani</title>
+</head>
+<body>
+
+  <h1>Realiza tu Pedido 📝</h1>
+  <p><a href="index.html">← Regresar al inicio</a></p>
+
+  <p>Llena tus datos y te ayudamos a mandarlo por Messenger. Recuerda: los pedidos se hacen con 2 días de anticipación.</p>
+
+  <form id="formPedido">
+    <p>
+      <label>Tu nombre:</label><br>
+      <input type="text" id="nombre" required>
+    </p>
+
+    <p>
+      <label>¿Qué quieres pedir?</label><br>
+      <select id="categoria">
+        <option value="Pastel">Pastel</option>
+        <option value="Cupcakes">Cupcakes</option>
+        <option value="Panqué">Panqué</option>
+        <option value="Postre individual">Postre individual</option>
+      </select>
+    </p>
+
+    <p>
+      <label>Sabor:</label><br>
+      <input type="text" id="sabor" placeholder="Ej. Red Velvet">
+    </p>
+
+    <p>
+      <label>Relleno (si aplica):</label><br>
+      <input type="text" id="relleno" placeholder="Ej. Fresas con crema">
+    </p>
+
+    <p>
+      <label>Fecha en que lo necesitas:</label><br>
+      <input type="date" id="fecha" required>
+    </p>
+
+    <p>
+      <label>Hora de entrega:</label><br>
+      <input type="time" id="hora">
+    </p>
+
+    <p>
+      <label>Notas adicionales:</label><br>
+      <textarea id="notas" rows="3" placeholder="Ej. dedicatoria, tamaño, alergias..."></textarea>
+    </p>
+
+    <button type="submit">Enviar pedido por Messenger</button>
+  </form>
+
+  <script>
+    document.getElementById("formPedido").addEventListener("submit", function(evento) {
+      evento.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const categoria = document.getElementById("categoria").value;
+      const sabor = document.getElementById("sabor").value;
+      const relleno = document.getElementById("relleno").value;
+      const fecha = document.getElementById("fecha").value;
+      const hora = document.getElementById("hora").value;
+      const notas = document.getElementById("notas").value;
+
+      const mensaje = "¡Hola! Quiero hacer un pedido 🎂\n" +
+        "Nombre: " + nombre + "\n" +
+        "Producto: " + categoria + "\n" +
+        "Sabor: " + sabor + "\n" +
+        "Relleno: " + relleno + "\n" +
+        "Fecha: " + fecha + "\n" +
+        "Hora: " + hora + "\n" +
+        "Notas: " + notas;
+
+      navigator.clipboard.writeText(mensaje).then(function() {
+        alert("Tu pedido se copió automáticamente. En Messenger, solo mantén presionado el cuadro de texto y dale 'Pegar', luego envíalo 💌");
+        window.open("https://m.me/61589592693988", "_blank");
+      });
+    });
+  </script>
+
+</body>
+</html>
